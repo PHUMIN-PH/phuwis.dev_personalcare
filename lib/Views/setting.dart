@@ -90,6 +90,9 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
+                              onTap:  () {
+
+                              },
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('Bluetooth & Devices'),
                               subtitle: Text('Supporting text'),
@@ -101,6 +104,9 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
+                              onTap:  () {
+
+                              },
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('Languages'),
                               subtitle: Text('Supporting text'),
@@ -112,6 +118,9 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
+                              onTap:  () {
+
+                              },
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('Notification'),
                               subtitle: Text('Supporting text'),
@@ -123,6 +132,9 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
+                              onTap:  () {
+
+                              },
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('Security & Privacy'),
                               subtitle: Text('Supporting text'),
@@ -144,21 +156,27 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
+                              onTap:  () {
+                                logout();
+                              },
                               leading: CircleAvatar(child: Text('A')),
-                              title: Text('Security & Privacy'),
-                              subtitle: Text('Supporting text'),
+                              title: Text('Logout'),
+                              subtitle: Text('logout'),
                               trailing: Icon(Icons.arrow_forward_ios_sharp),
                             ),
                           ),
                           Card(
                             child: ListTile(
+                              onTap:  () {
+
+                              },
                               leading: CircleAvatar(child: Text('A')),
-                              title: Text('Security & Privacy'),
+                              title: Text('temp'),
                               subtitle: Text('Supporting text'),
                               trailing: Icon(Icons.arrow_forward_ios_sharp),
                             ),
                           ),
-                          _buildSettingsItem(context, 'Setting menu Item 18', () {
+                          _buildSettingsItem(context, 'Setting menu Item 18','testing', () {
                             // Action to perform when Item 2 is tapped
 
                           }),

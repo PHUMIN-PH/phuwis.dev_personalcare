@@ -13,8 +13,8 @@ class _check_loginState extends State<check_login> {
   Future checklogin() async {
     bool? signin = await User.getsignin();
     print(signin);
-    if (signin == false) {
-      Navigator.pushNamed(context, 'login');
+    if (signin = false) {
+      print("Login False");
     } else {
       Navigator.pushNamed(context, 'home');
     }

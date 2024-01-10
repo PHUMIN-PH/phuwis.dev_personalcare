@@ -23,6 +23,21 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   String _errorMessage = '';
 
+  Future checklogin() async {
+    bool? signin = await User.getsignin();
+    print(signin);
+    if (signin == false) {
+      Navigator.pushNamed(context, 'login');
+    } else {
+      Navigator.pushNamed(context, 'home');
+    }
+  }
+
+  void initState() {
+    checklogin();
+    super.initState();
+  }
+
   Future sign_in() async {
 
     String url =
@@ -62,11 +77,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         body: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(color: Colors.white),
+
             child: Form(
               key: formKey,
               child: SingleChildScrollView(
