@@ -1,3 +1,4 @@
+import 'package:ener_personalcare/main.dart';
 import 'package:flutter/material.dart';
 import 'package:ener_personalcare/Controllers/user.dart';
 
@@ -26,6 +27,6 @@ class _check_loginState extends State<check_login> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MyApp();
   }
 }

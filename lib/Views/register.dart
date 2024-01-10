@@ -33,6 +33,7 @@ class _SignUpSceenState extends State<SignUpSceen> {
       'telephone': telephone.text,
     });
     var data = json.decode(response.body);
+    print("Data after BTN : ");
     if (data == "Error") {
       Navigator.pushNamed(context, 'register');
       // Navigator.push(
@@ -136,8 +137,10 @@ class _SignUpSceenState extends State<SignUpSceen> {
                       child: TextFormField(
                         obscureText: false,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
                           labelText: 'Your name',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
                         ),
                         validator: (val) {
                           if (val!.isEmpty) {
@@ -156,7 +159,9 @@ class _SignUpSceenState extends State<SignUpSceen> {
                       child: TextFormField(
                         obscureText: false,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
                           labelText: 'Username For Login',
                         ),
                         validator: (val) {
@@ -176,7 +181,9 @@ class _SignUpSceenState extends State<SignUpSceen> {
                       child: TextFormField(
                         obscureText: false,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
                           labelText: 'Telephone number',
                         ),
                         validator: (val) {
@@ -196,7 +203,9 @@ class _SignUpSceenState extends State<SignUpSceen> {
                       child: TextFormField(
                         obscureText: false,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
                           labelText: 'Your E-Mail',
                         ),
                         validator: (val) {
@@ -216,7 +225,9 @@ class _SignUpSceenState extends State<SignUpSceen> {
                       child: TextFormField(
                         obscureText: true,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
                           labelText: 'Create your Password',
                         ),
                         validator: (val) {
@@ -236,7 +247,9 @@ class _SignUpSceenState extends State<SignUpSceen> {
                       child: TextFormField(
                         obscureText: true,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
                           labelText: 'Re-Type your Password',
                         ),
                         validator: (val) {
@@ -276,6 +289,11 @@ class _SignUpSceenState extends State<SignUpSceen> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    signinOption()
+
                   ],
                 ),
               ],
@@ -283,4 +301,25 @@ class _SignUpSceenState extends State<SignUpSceen> {
           ),
         ));
   }
+  Row signinOption() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("already have account?",
+            style: TextStyle(color: Colors.black87)),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginScreen()));
+          },
+          child: const Text(
+            "Sign in",
+            style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
+          ),
+        )
+      ],
+    );
+  }
 }
+
+

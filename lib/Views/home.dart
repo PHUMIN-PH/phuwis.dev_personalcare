@@ -16,24 +16,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Future logout() async {
     await User.setsignin(false);
+    var logdata = User.setsignin(false);
+    print("object is : ");
+    print(logdata);
     Navigator.pushNamed(context, 'login');
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[800],
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.heart_broken), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
-        ],
-      ),
       body: SafeArea(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              //  padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
               child: Column(
                 children: [
                   //Greeting row
@@ -47,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hello  Admin',
+                            'Hello  DevPH',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,
@@ -58,55 +55,61 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 10,
                           ),
                           Text(
-                            '215 data vm machine',
+                            'sunshine morning',
                             style: TextStyle(color: Colors.blue[100]),
                           ),
                         ],
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue[600],
-                          borderRadius: BorderRadius.circular(12),
+                      GestureDetector(
+                        onTap: () {
+                          print("Container clicked For Sign=out");
+                          logout();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue[600],
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: EdgeInsets.all(12),
+                          child: Icon(
+                            Icons.notifications_active,
+                            color: Colors.white,
+                          ),
                         ),
-                        padding: EdgeInsets.all(12),
-                        child: Icon(
-                          Icons.notifications,
-                          color: Colors.white,
-                        ),
-                      )
+                      ),
                     ],
                   ),
 
-                  SizedBox(
-                    height: 20,
-                  ),
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
 
                   // Search BAr ---------------------------------------------------
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue[600],
-                        borderRadius: BorderRadius.circular(12)),
-                    padding: EdgeInsets.all(12),
-                    child: Row(children: [
-                      Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'Search',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ]),
-                  ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //       color: Colors.blue[600],
+                  //       borderRadius: BorderRadius.circular(12)),
+                  //   padding: EdgeInsets.all(12),
+                  //   child: Row(children: [
+                  //     Icon(
+                  //       Icons.search,
+                  //       color: Colors.white,
+                  //     ),
+                  //     SizedBox(
+                  //       width: 5,
+                  //     ),
+                  //     Text(
+                  //       'Search',
+                  //       style: TextStyle(
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //   ]),
+                  // ),
 
-                  SizedBox(
-                    height: 10,
-                  ),
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
 
                   // how do you feel?
 
@@ -197,13 +200,65 @@ class _HomeScreenState extends State<HomeScreen> {
                     SmartWatchActivityDetail: 'Dasd',
                   ),
                   SmartWatchListView(
-                    color: Colors.orange[300],
+                    color: Colors.pink[300],
                     icon: Icons.favorite,
                     SmartWatchActivityName: 'Drink water',
                     SmartWatchActivityDetail: 'Dasd',
                   ),
                 ],
               ),
+
+              // child: ListView(
+              //   children: <Widget>[
+              //     ListTile(
+              //       leading: Icon(Icons.star),
+              //       title: Text('Item 1'),
+              //       subtitle: Text('Subtitle for Item 1'),
+              //       onTap: () {
+              //         // Handle item tap
+              //         print('Item 1 tapped');
+              //       },
+              //     ),
+              //     ListTile(
+              //       leading: Icon(Icons.star),
+              //       title: Text('Item 2'),
+              //       subtitle: Text('Subtitle for Item 2'),
+              //       onTap: () {
+              //         // Handle item tap
+              //         print('Item 2 tapped');
+              //       },
+              //     ),
+              //     ListTile(
+              //       leading: Icon(Icons.star),
+              //       title: Text('Item 2'),
+              //       subtitle: Text('Subtitle for Item 2'),
+              //       onTap: () {
+              //         // Handle item tap
+              //         print('Item 2 tapped');
+              //       },
+              //     ),
+              //     ListTile(
+              //       leading: Icon(Icons.star),
+              //       title: Text('Item 2'),
+              //       subtitle: Text('Subtitle for Item 2'),
+              //       onTap: () {
+              //         // Handle item tap
+              //         print('Item 2 tapped');
+              //       },
+              //     ),
+              //     ListTile(
+              //       leading: Icon(Icons.star),
+              //       title: Text('Item 2'),
+              //       subtitle: Text('Subtitle for Item 2'),
+              //       onTap: () {
+              //         // Handle item tap
+              //         print('Item 2 tapped');
+              //       },
+              //     ),
+
+              //     // Add more ListTiles as needed
+              //   ],
+              // ),
             ),
             SizedBox(
               height: 20,
@@ -217,27 +272,43 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     // Excercise Heading . . . . . . . .  . . .
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Main Activity',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                        Icon(Icons.more_horiz),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Text(
+                    //       'Main Activity',
+                    //       style: TextStyle(
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 20,
+                    //       ),
+                    //     ),
+                    //     Icon(Icons.more_horiz),
+                    //   ],
+                    // ), energetic => 9479Ener!
 
-                    SizedBox(
-                      height: 20,
-                    ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),https://chat.openai.com/share/977b403c-94f9-4615-a788-bef63d35e2a0
                     // ListView of excercise . . . . . . . . . . . . . . ..
                     Expanded(
                       child: ListView(
                         children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Main Activity',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Icon(Icons.more_horiz),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
                           ActivityListView(
                             icon: Icons.favorite,
                             ActivityName: 'Insert Health Data',

@@ -1,3 +1,4 @@
+import 'package:ener_personalcare/Controllers/check_login.dart';
 import 'package:flutter/material.dart';
 import 'widget.dart';
 import 'package:ener_personalcare/Views/register.dart';
@@ -13,13 +14,17 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+
+
 class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   // TextEditingController _emailTextController = TextEditingController();
   TextEditingController _username = TextEditingController();
   TextEditingController _passwordTextController = TextEditingController();
+  String _errorMessage = '';
 
   Future sign_in() async {
+
     String url =
         "https://energeticbase.000webhostapp.com/login.php"; //"http://192.168.1.115:8080/FlutterBase/register.php";
     final response = await http.post(Uri.parse(url), body: {
@@ -27,21 +32,37 @@ class _LoginScreenState extends State<LoginScreen> {
       'password': _passwordTextController.text,
     });
     var data = json.decode(response.body);
-    if (data == "Error") {
-      Navigator.pushNamed(context, 'login');
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
-    } else {
-      await User.setsignin(true);
-      Navigator.pushNamed(context, 'home');
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
-    }
-  }
 
+    if(_username.text == "" || _passwordTextController.text ==""){
+      // if(_username.text ==""){
+      //   print("username  is null");
+      // }else if(_passwordTextController.text == ""){
+      //   print(" password is null");
+      // }
+      setState(() {
+        _errorMessage = 'Enter username and password.';
+      });
+
+    }else{
+      if (data == "Error") {
+        setState(() {
+          _errorMessage = 'Login failed. Please check your credentials.';
+        });
+        // Navigator.push(
+        //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      } else {
+        await User.setsignin(true);
+        Navigator.pushNamed(context, 'home');
+        // Navigator.push(
+        //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      }
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         body: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
@@ -68,6 +89,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 20,
                       ),
+
+                      if (_errorMessage.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(
+                            _errorMessage,
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+
+
                       // singInSignUpButton(context, true, () {
                       //   Navigator.push(
                       //       context,
@@ -90,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           },
                           child: const Text(
-                            'Sign up',
+                            'Login',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -129,3 +161,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
