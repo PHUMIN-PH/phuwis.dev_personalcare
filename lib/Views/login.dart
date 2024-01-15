@@ -17,8 +17,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   // TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _username = TextEditingController();
-  TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   String _errorMessage = '';
 
   // Future checklogin() async {
@@ -41,11 +41,11 @@ class _LoginScreenState extends State<LoginScreen> {
         "https://energeticbase.000webhostapp.com/login.php"; //"http://192.168.1.115:8080/FlutterBase/register.php";
     final response = await http.post(Uri.parse(url), body: {
       'username': _username.text,
-      'password': _passwordTextController.text,
+      'password': _password.text,
     });
     var data = json.decode(response.body);
 
-    if (_username.text == "" || _passwordTextController.text == "") {
+    if (_username.text == "" || _password.text == "") {
       // if(_username.text ==""){
       //   print("username  is null");
       // }else if(_passwordTextController.text == ""){
@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 20,
                       ),
                       widgetTextField("Enter Password", Icons.lock_outline,
-                          true, _passwordTextController),
+                          true, _password),
                       SizedBox(
                         height: 20,
                       ),
