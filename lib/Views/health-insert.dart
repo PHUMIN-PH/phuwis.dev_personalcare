@@ -118,6 +118,16 @@ class SettingsList extends StatelessWidget {
     );
   }
 
+  Widget _buildTextboxItem(BuildContext context, String itemName, VoidCallback onTap) {
+    return Card(
+      child: ListTile(
+        title: Text(itemName),
+        onTap: onTap,
+        leading:CircleAvatar(child: Text('A')),
+      ),
+    );
+  }
+
   void _onItem1Tapped(BuildContext context) {
     // Replace this with the action you want to perform for Item 1
     ScaffoldMessenger.of(context).showSnackBar(

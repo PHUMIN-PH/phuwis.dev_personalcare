@@ -14,8 +14,6 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-
-
 class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   // TextEditingController _emailTextController = TextEditingController();
@@ -23,23 +21,22 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   String _errorMessage = '';
 
-  Future checklogin() async {
-    bool? signin = await User.getsignin();
-    print(signin);
-    if (signin == false) {
-      Navigator.pushNamed(context, 'login');
-    } else {
-      Navigator.pushNamed(context, 'home');
-    }
-  }
+  // Future checklogin() async {
+  //   bool? signin = await User.getsignin();
+  //   print(signin);
+  //   if (signin == false) {
+  //     Navigator.pushNamed(context, 'login');
+  //   } else {
+  //     Navigator.pushNamed(context, 'home');
+  //   }
+  // }
 
-  void initState() {
-    checklogin();
-    super.initState();
-  }
+  // void initState() {
+  //   checklogin();
+  //   super.initState();
+  // }
 
   Future sign_in() async {
-
     String url =
         "https://energeticbase.000webhostapp.com/login.php"; //"http://192.168.1.115:8080/FlutterBase/register.php";
     final response = await http.post(Uri.parse(url), body: {
@@ -48,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     var data = json.decode(response.body);
 
-    if(_username.text == "" || _passwordTextController.text ==""){
+    if (_username.text == "" || _passwordTextController.text == "") {
       // if(_username.text ==""){
       //   print("username  is null");
       // }else if(_passwordTextController.text == ""){
@@ -57,8 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         _errorMessage = 'Enter username and password.';
       });
-
-    }else{
+    } else {
       if (data == "Error") {
         setState(() {
           _errorMessage = 'Login failed. Please check your credentials.';
@@ -72,8 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
         //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
       }
     }
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +77,6 @@ class _LoginScreenState extends State<LoginScreen> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(color: Colors.white),
-
             child: Form(
               key: formKey,
               child: SingleChildScrollView(
@@ -113,7 +108,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(color: Colors.red),
                           ),
                         ),
-
 
                       // singInSignUpButton(context, true, () {
                       //   Navigator.push(
@@ -176,4 +170,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-

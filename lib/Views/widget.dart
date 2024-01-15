@@ -32,11 +32,9 @@ TextField widgetTextField(String text, IconData icon, bool isPassword,
           borderRadius: BorderRadius.circular(30.0),
           borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
     ),
-    
     keyboardType:
         isPassword ? TextInputType.visiblePassword : TextInputType.emailAddress,
   );
-  
 }
 
 Container singInSignUpButton(
@@ -65,5 +63,48 @@ Container singInSignUpButton(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
     ),
+  );
+}
+
+Container _widgetOnTapActivityListView(
+    BuildContext context, Function onTap) {
+  return Container(
+    child: Card(
+      child: ListTile(
+        onTap: () {},
+        leading: CircleAvatar(child: Text('A')),
+        title: Text('Accessibility'),
+        subtitle: Text('Supporting text'),
+        trailing: Icon(Icons.arrow_forward_ios_sharp),
+      ),
+    ),
+  );
+}
+
+TextField _widgetActivityListView(String text, IconData icon, bool isPassword,
+    TextEditingController controller) {
+  return TextField(
+    controller: controller,
+    obscureText: isPassword,
+    enableSuggestions: isPassword,
+    autocorrect: !isPassword,
+    cursorColor: Colors.blue[200],
+    style: TextStyle(color: Colors.blue.withOpacity(0.9)),
+    decoration: InputDecoration(
+      prefixIcon: Icon(
+        icon,
+        color: Colors.blue[400],
+      ),
+      labelText: text,
+      labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+      filled: true,
+      floatingLabelBehavior: FloatingLabelBehavior.never,
+      fillColor: Colors.blue.withOpacity(0.3),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30.0),
+          borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
+    ),
+    keyboardType:
+        isPassword ? TextInputType.visiblePassword : TextInputType.emailAddress,
   );
 }

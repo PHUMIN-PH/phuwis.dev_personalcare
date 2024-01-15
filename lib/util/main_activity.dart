@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ActivityListView extends StatelessWidget {
-  final icon;
-  final String ActivityName;
-  final String ActivityDetail;
+  final activityicon;
+  final String activityName;
+  final String activityDetail;
+  final String activityOnTap;
   // final int numberOfActivityName;
 
   const ActivityListView({
     Key? key,
-    required this.icon,
-    required this.ActivityName,
-    required this.ActivityDetail,
+    required this.activityicon,
+    required this.activityName,
+    required this.activityDetail,
+    required this.activityOnTap,
   }) : super(key: key);
 
   @override
@@ -23,49 +25,54 @@ class ActivityListView extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
         ),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Row(
+        child: GestureDetector(
+          onTap: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Container(
-                    padding: EdgeInsets.all(16),
-                    color: Colors.orange,
-                    child: Icon(
-                      icon,
-                      color: Colors.white,
-                    )),
-              ),
-              SizedBox(
-                width: 12,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  Text(
-                    ActivityName,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                        padding: EdgeInsets.all(16),
+                        color: Colors.orange,
+                        child: Icon(
+                          activityicon,
+                          color: Colors.white,
+                        )),
                   ),
-                  SizedBox(height: 5),
-                  Text(
-                    // numberOfActivityName.toString() + 'PersonalCare Data from hospital',
-                    ActivityDetail,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        activityName,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        // numberOfActivityName.toString() + 'PersonalCare Data from hospital',
+                        activityDetail,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
+              Icon(Icons.more_horiz),
             ],
           ),
-          Icon(Icons.more_horiz),
-        ]),
+        ),
       ),
     );
   }

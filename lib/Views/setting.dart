@@ -1,4 +1,4 @@
-
+import 'package:ener_personalcare/Views/health-insert.dart';
 import 'package:flutter/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:ener_personalcare/util/main_activity.dart';
@@ -76,9 +76,7 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
-                              onTap:  () {
-
-                              },
+                              onTap: () {},
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('Accessibility'),
                               subtitle: Text('Supporting text'),
@@ -90,9 +88,7 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
-                              onTap:  () {
-
-                              },
+                              onTap: () {},
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('Bluetooth & Devices'),
                               subtitle: Text('Supporting text'),
@@ -104,9 +100,7 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
-                              onTap:  () {
-
-                              },
+                              onTap: () {},
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('Languages'),
                               subtitle: Text('Supporting text'),
@@ -118,9 +112,7 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
-                              onTap:  () {
-
-                              },
+                              onTap: () {},
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('Notification'),
                               subtitle: Text('Supporting text'),
@@ -132,9 +124,7 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
-                              onTap:  () {
-
-                              },
+                              onTap: () {},
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('Security & Privacy'),
                               subtitle: Text('Supporting text'),
@@ -156,7 +146,7 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
-                              onTap:  () {
+                              onTap: () {
                                 logout();
                               },
                               leading: CircleAvatar(child: Text('A')),
@@ -167,19 +157,30 @@ class _SettingBtnState extends State<SettingBtn> {
                           ),
                           Card(
                             child: ListTile(
-                              onTap:  () {
-
-                              },
+                              onTap: () {},
                               leading: CircleAvatar(child: Text('A')),
                               title: Text('temp'),
                               subtitle: Text('Supporting text'),
                               trailing: Icon(Icons.arrow_forward_ios_sharp),
                             ),
                           ),
-                          _buildSettingsItem(context, 'Setting menu Item 18','testing', () {
+                          // _widgetSetting('Text Widget Setting TEST','this is subTextWidgetSetting',(){}),
+                          _buildSettingsItem(
+                              context, 'Setting menu Item 18', 'testing', () {
                             // Action to perform when Item 2 is tapped
-
                           }),
+                          _buildWidgetSetting(
+                            context,
+                            'Widget Item2',
+                            'Widget_GET_Subtitle',
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => healthInsert()),
+                              );
+                            },
+                          )
                           // Card(
                           //   child: InkWell(
                           //     splashColor: Colors.blue,
@@ -200,17 +201,30 @@ class _SettingBtnState extends State<SettingBtn> {
             ),
           ),
         ),
-
       ),
     );
   }
-  Widget _buildSettingsItem(BuildContext context, String itemName,String GET_Subtitle, VoidCallback onTap) {
+
+  Widget _buildSettingsItem(BuildContext context, String itemName,
+      String GET_Subtitle, VoidCallback onTap) {
     return Card(
       child: ListTile(
         title: Text(itemName),
         subtitle: Text(GET_Subtitle),
         onTap: onTap,
-        leading:CircleAvatar(child: Text('A')),
+        leading: CircleAvatar(child: Text('A')),
+      ),
+    );
+  }
+
+  Widget _buildWidgetSetting(BuildContext context, String itemName,
+      String GET_Subtitle, VoidCallback onTap) {
+    return Card(
+      child: ListTile(
+        title: Text(itemName),
+        subtitle: Text(GET_Subtitle),
+        onTap: onTap,
+        leading: CircleAvatar(child: Text('A')),
       ),
     );
   }
@@ -239,6 +253,32 @@ class CardExample extends StatelessWidget {
             child: Text('A card that can be tapped'),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _widgetSetting extends StatelessWidget {
+  final String textWidgetSetting;
+  final String subTextWidgetSetting;
+  final Function onTapWidgetSetting;
+
+  const _widgetSetting({
+    super.key,
+    required this.textWidgetSetting,
+    required this.subTextWidgetSetting,
+    required this.onTapWidgetSetting,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        onTap: () => onTapWidgetSetting,
+        leading: CircleAvatar(child: Text('A')),
+        title: Text(textWidgetSetting),
+        subtitle: Text(subTextWidgetSetting),
+        trailing: Icon(Icons.arrow_forward_ios_sharp),
       ),
     );
   }

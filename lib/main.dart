@@ -34,10 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ener PersonalCare',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: check_login(),
+      home: NavigationActivity(),
       routes: {
         'register': (context) => SignUpSceen(),
         'home': (context) => NavigationActivity(),
@@ -47,4 +44,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

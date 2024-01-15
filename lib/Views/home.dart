@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ener_personalcare/Views/health-insert.dart';
 import 'package:ener_personalcare/util/emoticon_face.dart';
 import 'package:ener_personalcare/util/main_activity.dart';
 import 'package:flutter/material.dart';
 import 'package:ener_personalcare/Controllers/user.dart';
+import 'widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[800],
+      backgroundColor: Colors.pink[50],
       body: SafeArea(
         child: Column(
           children: [
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text(
                             'Hello  DevPH',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
@@ -80,98 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
 
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
-
-                  // Search BAr ---------------------------------------------------
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //       color: Colors.blue[600],
-                  //       borderRadius: BorderRadius.circular(12)),
-                  //   padding: EdgeInsets.all(12),
-                  //   child: Row(children: [
-                  //     Icon(
-                  //       Icons.search,
-                  //       color: Colors.white,
-                  //     ),
-                  //     SizedBox(
-                  //       width: 5,
-                  //     ),
-                  //     Text(
-                  //       'Search',
-                  //       style: TextStyle(
-                  //         color: Colors.white,
-                  //       ),
-                  //     ),
-                  //   ]),
-                  // ),
-
-                  // SizedBox(
-                  //   height: 10,
-                  // ),
-
-                  // how do you feel?
-
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Text(
-                  //       'How do you feel today?',
-                  //       style: TextStyle(
-                  //         color: Colors.white,
-                  //         fontSize: 22,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //     Icon(
-                  //       Icons.more_horiz,
-                  //       color: Colors.white,
-                  //     ),
-                  //   ],
-                  // ),
-
                   SizedBox(
                     height: 20,
                   ),
-
-                  // 4 difference Icons --------------------------------------
-
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //   children: [
-                  //     Column(
-                  //       children: [
-                  //         SmartWatchListView(
-                  //           emoticonFace: 's',
-                  //         ),
-                  //       ],
-                  //     ),
-                  //     Column(
-                  //       children: [
-                  //         SmartWatchListView(
-                  //           emoticonFace: 's',
-                  //         ),
-                  //       ],
-                  //     ),
-                  //     Column(
-                  //       children: [
-                  //         SmartWatchListView(
-                  //           emoticonFace: 's',
-                  //         ),
-                  //       ],
-                  //     ),
-                  //     Column(
-                  //       children: [
-                  //         SmartWatchListView(
-                  //           emoticonFace: 's',
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ],
-                  // ),
-
-                  // End of icon list ----------------------------------------
                 ],
               ),
             ),
@@ -207,157 +120,104 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-
-              // child: ListView(
-              //   children: <Widget>[
-              //     ListTile(
-              //       leading: Icon(Icons.star),
-              //       title: Text('Item 1'),
-              //       subtitle: Text('Subtitle for Item 1'),
-              //       onTap: () {
-              //         // Handle item tap
-              //         print('Item 1 tapped');
-              //       },
-              //     ),
-              //     ListTile(
-              //       leading: Icon(Icons.star),
-              //       title: Text('Item 2'),
-              //       subtitle: Text('Subtitle for Item 2'),
-              //       onTap: () {
-              //         // Handle item tap
-              //         print('Item 2 tapped');
-              //       },
-              //     ),
-              //     ListTile(
-              //       leading: Icon(Icons.star),
-              //       title: Text('Item 2'),
-              //       subtitle: Text('Subtitle for Item 2'),
-              //       onTap: () {
-              //         // Handle item tap
-              //         print('Item 2 tapped');
-              //       },
-              //     ),
-              //     ListTile(
-              //       leading: Icon(Icons.star),
-              //       title: Text('Item 2'),
-              //       subtitle: Text('Subtitle for Item 2'),
-              //       onTap: () {
-              //         // Handle item tap
-              //         print('Item 2 tapped');
-              //       },
-              //     ),
-              //     ListTile(
-              //       leading: Icon(Icons.star),
-              //       title: Text('Item 2'),
-              //       subtitle: Text('Subtitle for Item 2'),
-              //       onTap: () {
-              //         // Handle item tap
-              //         print('Item 2 tapped');
-              //       },
-              //     ),
-
-              //     // Add more ListTiles as needed
-              //   ],
-              // ),
             ),
             SizedBox(
               height: 20,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Main Activity',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                ),
+                Icon(Icons.more_horiz),
+              ],
+            ),
             Expanded(
-              child: Container(
-                padding: EdgeInsets.all(25),
-                color: Colors.grey[100],
-                child: Center(
-                    child: Column(
-                  children: [
-                    // Excercise Heading . . . . . . . .  . . .
-
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     Text(
-                    //       'Main Activity',
-                    //       style: TextStyle(
-                    //         fontWeight: FontWeight.bold,
-                    //         fontSize: 20,
-                    //       ),
-                    //     ),
-                    //     Icon(Icons.more_horiz),
-                    //   ],
-                    // ), energetic => 9479Ener!
-
-                    // SizedBox(
-                    //   height: 20,
-                    // ),https://chat.openai.com/share/977b403c-94f9-4615-a788-bef63d35e2a0
-                    // ListView of excercise . . . . . . . . . . . . . . ..
-                    Expanded(
-                      child: ListView(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Main Activity',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              Icon(Icons.more_horiz),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          ActivityListView(
-                            icon: Icons.favorite,
-                            ActivityName: 'Insert Health Data',
-                            ActivityDetail: 'PersonalCare Data from hospital',
-                          ),
-                          ActivityListView(
-                            icon: Icons.calendar_month,
-                            ActivityName: 'Activity Daily',
-                            ActivityDetail: 'insert daily activity ',
-                          ),
-                          ActivityListView(
-                            icon: Icons.food_bank,
-                            ActivityName: 'Favorite Food',
-                            ActivityDetail: 'insert daily food in application',
-                          ),
-                          ActivityListView(
-                            icon: Icons.favorite,
-                            ActivityName: 'Insert other',
-                            ActivityDetail: 'PersonalCare',
-                          ),
-                          ActivityListView(
-                            icon: Icons.favorite,
-                            ActivityName: 'Insert other',
-                            ActivityDetail: 'PersonalCare',
-                          ),
-                          ActivityListView(
-                            icon: Icons.favorite,
-                            ActivityName: 'Insert other',
-                            ActivityDetail: 'PersonalCare',
-                          ),
-                          ActivityListView(
-                            icon: Icons.favorite,
-                            ActivityName: 'Insert other',
-                            ActivityDetail: 'PersonalCare',
-                          ),
-                          ActivityListView(
-                            icon: Icons.favorite,
-                            ActivityName: 'Insert other',
-                            ActivityDetail: 'PersonalCare',
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                )),
+              child: ListView(
+                padding: EdgeInsets.all(10),
+                // children: const [
+                children: [
+                  // before version is old ROW (127-138)
+                  SizedBox(
+                    height: 10,
+                  ),
+                  newMethod(context, "Test one widget",
+                      "This testing one widget . . ."),
+                  _buildWidgetHome(
+                      context, 'Widget Item2', 'Widget_GET_Subtitle', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => healthInsert()),
+                    );
+                  }),
+                  ActivityListView(
+                    activityicon: Icons.favorite,
+                    activityName: 'Insert Health Data',
+                    activityDetail: 'PersonalCare Data from hospital',
+                    activityOnTap: "healthInsert()",
+                  ),
+                  ActivityListView(
+                    activityicon: Icons.calendar_month,
+                    activityName: 'Activity Daily',
+                    activityDetail: 'insert daily activity ',
+                    activityOnTap: "",
+                  ),
+                  ActivityListView(
+                    activityicon: Icons.food_bank,
+                    activityName: 'Favorite Food',
+                    activityDetail: 'insert daily food in application',
+                    activityOnTap: "",
+                  ),
+                  ActivityListView(
+                    activityicon: Icons.favorite,
+                    activityName: 'Insert other',
+                    activityDetail: 'PersonalCare',
+                    activityOnTap: "",
+                  ),
+                ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget newMethod(BuildContext context, String itemName, String subtitle) {
+    return _buildWidgetHome(
+      context,
+      itemName,
+      subtitle,
+      () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => healthInsert()),
+        );
+      },
+    );
+  }
+
+  Widget _buildWidgetHome(BuildContext context, String itemName,
+      String GET_Subtitle, VoidCallback onTap) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: ListTile(
+        title: Text(itemName),
+        subtitle: Text(GET_Subtitle),
+        onTap: onTap,
+        leading: CircleAvatar(child: Text("IN")),
       ),
     );
   }
