@@ -1,4 +1,5 @@
 import 'package:ener_personalcare/Views/home.dart';
+import 'package:ener_personalcare/Views/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -29,7 +30,7 @@ class SettingsPage extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
+                  builder: (context) => NavigationActivity(),
                 ));
           },
         ),
@@ -93,7 +94,7 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
 
   Future sign_in() async {
     String url =
-        "https:/m/coreapi/apixcmlab/apix_insert.php"; //"http://192.168.1.115:8080/FlutterBase/register.php";
+        "https://energeticbase.000webhostapp.com/coreapi/apixcmlab/apix_insert.php"; //"http://192.168.1.115:8080/FlutterBase/register.php";
     final response = await http.post(Uri.parse(url), body: {
       'SugarBloodController': _textformSugarBloodController.text,
       'BloodUreaNitrogen': _textformBloodUreaNitrogen.text,
@@ -264,7 +265,7 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
                 children: [
                   TextField(
                     textAlign: TextAlign.center,
-                    controller: _textformSugarBloodController,
+                    controller: controller,
                     decoration: InputDecoration(
                       hintText: 'Type  here',
                       border: OutlineInputBorder(

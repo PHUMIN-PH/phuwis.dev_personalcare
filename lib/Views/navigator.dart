@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ener_personalcare/Views/healthData.dart';
 import 'package:ener_personalcare/util/emoticon_face.dart';
 import 'package:ener_personalcare/util/main_activity.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class _NavigationActivityState extends State<NavigationActivity> {
 
   List<Widget> _page = [
     HomeScreen(),
-    healthInsert(),
+    HeealthData(),
     SettingBtn(),
   ];
 
@@ -68,6 +69,29 @@ class _NavigationActivityState extends State<NavigationActivity> {
           // BottomNavigationBarItem(
           //     icon: Icon(Icons.exit_to_app_rounded), label: 'Logout'),
         ],
+      ),
+    );
+  }
+}
+
+class DetailPage extends StatelessWidget {
+  const DetailPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('DetailPage'),
+      ),
+      body: Center(
+        // Your implementaion
+        // ...
+        child: ElevatedButton(
+          child: const Text('Go back to Home Page!'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
     );
   }

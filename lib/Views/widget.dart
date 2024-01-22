@@ -66,8 +66,7 @@ Container singInSignUpButton(
   );
 }
 
-Container _widgetOnTapActivityListView(
-    BuildContext context, Function onTap) {
+Container _widgetOnTapActivityListView(BuildContext context, Function onTap) {
   return Container(
     child: Card(
       child: ListTile(
@@ -107,4 +106,55 @@ TextField _widgetActivityListView(String text, IconData icon, bool isPassword,
     keyboardType:
         isPassword ? TextInputType.visiblePassword : TextInputType.emailAddress,
   );
+}
+
+class InsertActivityPage extends StatelessWidget {
+  const InsertActivityPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Insert Activity'),
+      ),
+      body: Center(
+        // Your implementaion
+        // ...
+        child: ElevatedButton(
+          child: const Text('Go back to Home Page!'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class InsertDailyActivity extends StatefulWidget {
+  const InsertDailyActivity({super.key});
+
+  @override
+  State<InsertDailyActivity> createState() => _InsertActivDailyityState();
+}
+
+class _InsertActivDailyityState extends State<InsertDailyActivity> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Insert Activity'),
+      ),
+      body: Center(
+        // Your implementaion
+        // ...
+        child: ElevatedButton(
+          child: const Text('Go back to Home Page!'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
+  }
 }

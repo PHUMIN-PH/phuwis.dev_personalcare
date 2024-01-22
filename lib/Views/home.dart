@@ -24,168 +24,198 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.pushNamed(context, 'login');
   }
 
+  Future<bool> _onBackPressed(BuildContext context) async {
+    // You can add any additional logic before exiting the app
+    // For example, show a confirmation dialog
+    return await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Exit App?'),
+            content: Text('Do you want to exit the application?'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text('No'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text('Yes'),
+              ),
+            ],
+          ),
+        ) ??
+        false; // If the user dismisses the dialog, default to false
+  }
+
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.pink[50],
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              //  padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
-              child: Column(
-                children: [
-                  //Greeting row
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Hello  DevPH',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+    return WillPopScope(
+      onWillPop: () async {
+        // Handle back button press
+        return _onBackPressed(context);
+      },
+      child: Scaffold(
+        backgroundColor: Colors.pink[50],
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                //  padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
+                child: Column(
+                  children: [
+                    //Greeting row
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Hello  DevPH',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'sunshine morning',
+                              style: TextStyle(color: Colors.blue[100]),
+                            ),
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            print("Container clicked For Sign=out");
+                            logout();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.blue[600],
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: EdgeInsets.all(12),
+                            child: Icon(
+                              Icons.notifications_active,
+                              color: Colors.white,
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'sunshine morning',
-                            style: TextStyle(color: Colors.blue[100]),
-                          ),
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          print("Container clicked For Sign=out");
-                          logout();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.blue[600],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.all(12),
-                          child: Icon(
-                            Icons.notifications_active,
-                            color: Colors.white,
-                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
 
-                  SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              // margin: EdgeInsets.only(right: 20),
-              height: 200,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  SmartWatchListView(
-                    color: Colors.blue,
-                    icon: Icons.favorite,
-                    SmartWatchActivityName: 'Walk',
-                    SmartWatchActivityDetail: 'Dasd',
-                  ),
-                  SmartWatchListView(
-                    color: Colors.green[500],
-                    icon: Icons.favorite,
-                    SmartWatchActivityName: 'Heart Rate',
-                    SmartWatchActivityDetail: 'Dasd',
-                  ),
-                  SmartWatchListView(
-                    color: Colors.orange[300],
-                    icon: Icons.favorite,
-                    SmartWatchActivityName: 'Drink water',
-                    SmartWatchActivityDetail: 'Dasd',
-                  ),
-                  SmartWatchListView(
-                    color: Colors.pink[300],
-                    icon: Icons.favorite,
-                    SmartWatchActivityName: 'Drink water',
-                    SmartWatchActivityDetail: 'Dasd',
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  'Main Activity',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+              ),
+              Container(
+                // margin: EdgeInsets.only(right: 20),
+                height: 200,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    SmartWatchListView(
+                      color: Colors.blue,
+                      icon: Icons.favorite,
+                      SmartWatchActivityName: 'Walk',
+                      SmartWatchActivityDetail: 'Dasd',
+                    ),
+                    SmartWatchListView(
+                      color: Colors.green[500],
+                      icon: Icons.favorite,
+                      SmartWatchActivityName: 'Heart Rate',
+                      SmartWatchActivityDetail: 'Dasd',
+                    ),
+                    SmartWatchListView(
+                      color: Colors.orange[300],
+                      icon: Icons.favorite,
+                      SmartWatchActivityName: 'Drink water',
+                      SmartWatchActivityDetail: 'Dasd',
+                    ),
+                    SmartWatchListView(
+                      color: Colors.pink[300],
+                      icon: Icons.favorite,
+                      SmartWatchActivityName: 'Drink water',
+                      SmartWatchActivityDetail: 'Dasd',
+                    ),
+                  ],
                 ),
-                Icon(Icons.more_horiz),
-              ],
-            ),
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.all(10),
-                // children: const [
-                children: [
-                  // before version is old ROW (127-138)
-                  SizedBox(
-                    height: 10,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Main Activity',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
-                  newMethod(context, "Test one widget",
-                      "This testing one widget . . ."),
-                  _buildWidgetHome(
-                      context, 'Widget Item2', 'Widget_GET_Subtitle', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => healthInsert()),
-                    );
-                  }),
-                  ActivityListView(
-                    activityicon: Icons.favorite,
-                    activityName: 'Insert Health Data',
-                    activityDetail: 'PersonalCare Data from hospital',
-                    activityOnTap: "healthInsert()",
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25.0),
                   ),
-                  ActivityListView(
-                    activityicon: Icons.calendar_month,
-                    activityName: 'Activity Daily',
-                    activityDetail: 'insert daily activity ',
-                    activityOnTap: "",
-                  ),
-                  ActivityListView(
-                    activityicon: Icons.food_bank,
-                    activityName: 'Favorite Food',
-                    activityDetail: 'insert daily food in application',
-                    activityOnTap: "",
-                  ),
-                  ActivityListView(
-                    activityicon: Icons.favorite,
-                    activityName: 'Insert other',
-                    activityDetail: 'PersonalCare',
-                    activityOnTap: "",
-                  ),
+                  Icon(Icons.more_horiz),
                 ],
               ),
-            ),
-          ],
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.all(10),
+                  // children: const [
+                  children: [
+                    // before version is old ROW (127-138)
+                    SizedBox(
+                      height: 10,
+                    ),
+                    newMethod(context, "Insert Healt Data",
+                        "This testing one widget . . ."),
+                    _buildWidgetHome(
+                        context, 'Insert activity', 'Widget_GET_Subtitle', () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => InsertActivityPage()),
+                      );
+                    }),
+                    ActivityListView(
+                      activityicon: Icons.favorite,
+                      activityName: 'Insert Health Data',
+                      activityDetail: 'PersonalCare Data from hospital',
+                      activityOnTap: "healthInsert()",
+                    ),
+                    ActivityListView(
+                      activityicon: Icons.calendar_month,
+                      activityName: 'Activity Daily',
+                      activityDetail: 'insert daily activity ',
+                      activityOnTap: "",
+                    ),
+                    ActivityListView(
+                      activityicon: Icons.food_bank,
+                      activityName: 'Favorite Food',
+                      activityDetail: 'insert daily food in application',
+                      activityOnTap: "",
+                    ),
+                    ActivityListView(
+                      activityicon: Icons.favorite,
+                      activityName: 'Insert other',
+                      activityDetail: 'PersonalCare',
+                      activityOnTap: "",
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

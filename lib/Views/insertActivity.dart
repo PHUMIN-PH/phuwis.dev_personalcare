@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
-class HeealthData extends StatefulWidget {
-  const HeealthData({super.key});
+class InsertDailyActivity extends StatefulWidget {
+  const InsertDailyActivity({super.key});
 
   @override
-  State<HeealthData> createState() => _HeealthDataState();
+  State<InsertDailyActivity> createState() => _InsertActivDailyityState();
 }
 
-class _HeealthDataState extends State<HeealthData> {
+class _InsertActivDailyityState extends State<InsertDailyActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Health Data For You'),
-        automaticallyImplyLeading: false, // Hide the back button
+        title: const Text('Insert Activity'),
       ),
       body: Center(
         // Your implementaion

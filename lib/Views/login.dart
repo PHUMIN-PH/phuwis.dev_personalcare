@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
       //   print(" password is null");
       // }
       setState(() {
-        _errorMessage = 'Enter username and password.';
+        final _errorMessage = 'Enter username and password.';
       });
     } else {
       if (data == "Error") {

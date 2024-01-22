@@ -1,3 +1,4 @@
+import 'package:ener_personalcare/Views/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'widget.dart';
@@ -22,6 +23,10 @@ class _SignUpSceenState extends State<SignUpSceen> {
   TextEditingController telephone = TextEditingController();
   TextEditingController nameuser = TextEditingController();
 
+  var _registerPassed = '';
+  var usernameState = '';
+  var nameState = '';
+
   Future sign_up() async {
     String url =
         "https://energeticbase.000webhostapp.com/register.php"; //"http://192.168.1.115:8080/FlutterBase/register.php";
@@ -30,7 +35,8 @@ class _SignUpSceenState extends State<SignUpSceen> {
       'email': _emailTextController.text,
       'password': _passWordTextController.text,
       'name': nameuser.text,
-      'telephone': telephone.text,
+      // 'telephone': telephone.text,
+      'telephone': '085555451',
     });
     var data = json.decode(response.body);
     print("Data after BTN : ");
@@ -39,10 +45,20 @@ class _SignUpSceenState extends State<SignUpSceen> {
       // Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => SignUpSceen()));
     } else {
+      setState(() {
+        _registerPassed = 'You Register Success.';
+      });
       await User.setsignin(true);
-      Navigator.pushNamed(context, 'home');
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      // Navigator.pushNamed(context, 'home');
+      // if (_registerPassed!.isNotEmpty) {
+      //   setState(() {
+      //     usernameState = _userNameTextController.text;
+      //     nameState = nameuser.text;
+      //   });
+
+      // }
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => NavigationActivity()));
     }
   }
 
@@ -52,14 +68,16 @@ class _SignUpSceenState extends State<SignUpSceen> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
             backgroundColor: Colors.transparent,
+            automaticallyImplyLeading: false, // Hide the back button
             elevation: 0,
             title: const Text(
-              "Register",
+              "",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             )),
         body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          // width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
+          padding: const EdgeInsets.all(28.0),
           decoration: BoxDecoration(color: Colors.white),
           child: Form(
             key: formKey,
@@ -107,200 +125,217 @@ class _SignUpSceenState extends State<SignUpSceen> {
             //           ],
             //         ))),
 //---------------------------------------------------------- 1st version end -----------------
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Text(
-                      'Register',
-                      style:
-                          TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    // const Text(
-                    //   'Please complete your',
-                    //   style: TextStyle(fontSize: 20),
-                    // ),
-                    // const Text(
-                    //   'biodata correctly',
-                    //   style: TextStyle(fontSize: 20),
-                    // ),
-                    // const SizedBox(
-                    //   height: 30,
-                    // ),
-                    SizedBox(
-                      width: 350,
-                      child: TextFormField(
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Your name',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
-                        ),
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Empty';
-                          }
-                          return null;
-                        },
-                        controller: nameuser,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 350,
-                      child: TextFormField(
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
-                          labelText: 'Username For Login',
-                        ),
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Empty';
-                          }
-                          return null;
-                        },
-                        controller: _userNameTextController,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 350,
-                      child: TextFormField(
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
-                          labelText: 'Telephone number',
-                        ),
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Empty';
-                          }
-                          return null;
-                        },
-                        controller: telephone,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 350,
-                      child: TextFormField(
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
-                          labelText: 'Your E-Mail',
-                        ),
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Empty';
-                          }
-                          return null;
-                        },
-                        controller: _emailTextController,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 350,
-                      child: TextFormField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
-                          labelText: 'Create your Password',
-                        ),
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Empty';
-                          }
-                          return null;
-                        },
-                        controller: _passWordTextController,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 350,
-                      child: TextFormField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
-                          labelText: 'Re-Type your Password',
-                        ),
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return 'Empty';
-                          } else if (val != _passWordTextController.text) {
-                            return 'Password not match';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 350,
-                      height: 60,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: const Color(0xFF3F60A0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15))),
-                        onPressed: () {
-                          bool pass = formKey.currentState!.validate();
-
-                          if (pass) {
-                            sign_up();
-                          }
-                        },
-                        child: const Text(
-                          'Sign up',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+            child: Card(
+              color: Colors.pink[50],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    'Register',
+                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  // const Text(
+                  //   'Please complete your',
+                  //   style: TextStyle(fontSize: 20),
+                  // ),
+                  // const Text(
+                  //   'biodata correctly',
+                  //   style: TextStyle(fontSize: 20),
+                  // ),
+                  // const SizedBox(
+                  //   height: 30,
+                  // ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 150,
+                        child: TextFormField(
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'Your name',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                borderSide: const BorderSide(
+                                    width: 0, style: BorderStyle.solid)),
                           ),
+                          // validator: (val) {
+                          //   if (val!.isEmpty) {
+                          //     return 'Empty';
+                          //   }
+                          //   return null;
+                          // },
+                          controller: nameuser,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      SizedBox(
+                        width: 150,
+                        child: TextFormField(
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                borderSide: const BorderSide(
+                                    width: 0, style: BorderStyle.solid)),
+                            labelText: 'Username For Login',
+                          ),
+                          validator: (val) {
+                            if (val!.isEmpty) {
+                              return 'Empty';
+                            }
+                            return null;
+                          },
+                          controller: _userNameTextController,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // SizedBox(
+                  //   width: 350,
+                  //   child: TextFormField(
+                  //     obscureText: false,
+                  //     decoration: InputDecoration(
+                  //       border: OutlineInputBorder(
+                  //           borderRadius: BorderRadius.circular(20.0),
+                  //           borderSide: const BorderSide(
+                  //               width: 0, style: BorderStyle.solid)),
+                  //       labelText: 'Telephone number',
+                  //     ),
+                  //     // validator: (val) {
+                  //     //   if (val!.isEmpty) {
+                  //     //     return 'Empty';
+                  //     //   }
+                  //     //   return null;
+                  //     // },
+                  //     controller: telephone,
+                  //   ),
+                  // ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 350,
+                    child: TextFormField(
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: const BorderSide(
+                                width: 0, style: BorderStyle.solid)),
+                        labelText: 'Your E-Mail',
+                      ),
+                      // validator: (val) {
+                      //   if (val!.isEmpty) {
+                      //     return 'Empty';
+                      //   }
+                      //   return null;
+                      // },
+                      controller: _emailTextController,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 350,
+                    child: TextFormField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: const BorderSide(
+                                width: 0, style: BorderStyle.solid)),
+                        labelText: 'Create your Password',
+                      ),
+                      validator: (val) {
+                        if (val!.isEmpty) {
+                          return 'Empty';
+                        }
+                        return null;
+                      },
+                      controller: _passWordTextController,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 350,
+                    child: TextFormField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: const BorderSide(
+                                width: 0, style: BorderStyle.solid)),
+                        labelText: 'Re-Type your Password',
+                      ),
+                      validator: (val) {
+                        if (val!.isEmpty) {
+                          return 'Empty';
+                        } else if (val != _passWordTextController.text) {
+                          return 'Password not match';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+
+                  if (_registerPassed.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        _registerPassed,
+                        style: TextStyle(color: Colors.green),
+                      ),
+                    ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 350,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: const Color(0xFF3F60A0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      onPressed: () {
+                        bool pass = formKey.currentState!.validate();
+
+                        if (pass) {
+                          sign_up();
+                        }
+                      },
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    signinOption()
-
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  signinOption()
+                ],
+              ),
             ),
           ),
         ));
   }
+
   Row signinOption() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -321,5 +356,3 @@ class _SignUpSceenState extends State<SignUpSceen> {
     );
   }
 }
-
-

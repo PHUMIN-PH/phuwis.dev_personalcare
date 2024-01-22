@@ -36,10 +36,10 @@ class MyApp extends StatelessWidget {
       title: 'Ener PersonalCare',
       home: NavigationActivity(),
       routes: {
-        'register': (context) => SignUpSceen(),
-        'home': (context) => NavigationActivity(),
+        'register': (context) => const SignUpSceen(),
+        'home': (context) => const NavigationActivity(),
         //'home': (context) => HomeScreen(),
-        'login': (context) => LoginScreen(),
+        'login': (context) => const LoginScreen(),
       },
     );
   }

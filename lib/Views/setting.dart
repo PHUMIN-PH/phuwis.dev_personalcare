@@ -24,7 +24,9 @@ class _SettingBtnState extends State<SettingBtn> {
     final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+        ),
         body: SizedBox(
           width: width,
           height: height,
