@@ -12,28 +12,29 @@ class healthInsert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SettingsPage(),
+      home: healthInsertII(),
     );
   }
 }
 
-class SettingsPage extends StatelessWidget {
+class healthInsertII extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Clinical Laboratory'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            // Navigator.pop(context);
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NavigationActivity(),
-                ));
-          },
-        ),
+        automaticallyImplyLeading: true,
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   onPressed: () {
+        //     // Navigator.pop(context);
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //           builder: (context) => NavigationActivity(),
+        //         ));
+        //   },
+        // ),
       ),
       body: ChemicalLabTextfield(),
     );
@@ -62,10 +63,11 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
       TextEditingController();
   final TextEditingController _textformLowDensityLipoprotein =
       TextEditingController();
-  final TextEditingController _textformAspartateTransaminase =
-      TextEditingController();
-  final TextEditingController _textformAlkalinePhosphatase =
-      TextEditingController();
+
+  final TextEditingController _textformSGOT = TextEditingController();
+  final TextEditingController _textformSGPT = TextEditingController();
+  final TextEditingController _textformALP = TextEditingController();
+
   final TextEditingController _textformTotalProtein = TextEditingController();
   final TextEditingController _textformAlbumin = TextEditingController();
   final TextEditingController _textformTotalBilirubin = TextEditingController();
@@ -90,12 +92,15 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
   final TextEditingController _textformCA125 = TextEditingController();
   final TextEditingController _textformCA199 = TextEditingController();
 
-  String _errorMessage = '';
+  String _successMessage = '';
+  String usernameRecive = 'Admin3';
 
-  Future sign_in() async {
-    String url =
-        "https://energeticbase.000webhostapp.com/coreapi/apixcmlab/apix_insert.php"; //"http://192.168.1.115:8080/FlutterBase/register.php";
-    final response = await http.post(Uri.parse(url), body: {
+  Future sendLabDataAPI() async {
+    String url = "https://energeticbase.000webhostapp.com/lb_insertAPI.php";
+    //"https://energeticbase.000webhostapp.com/coreapi/apixcmlab/apix_insert.php"; //"http://192.168.1.115:8080/FlutterBase/register.php";
+    final responseLab = await http.post(Uri.parse(url), body: {
+      // 'username': usernameRecive,
+
       'SugarBloodController': _textformSugarBloodController.text,
       'BloodUreaNitrogen': _textformBloodUreaNitrogen.text,
       'Creatinine': _textformCreatinine.text,
@@ -103,8 +108,11 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
       'Cholesterol': _textformCholesterol.text,
       'Triglyceride': _textformTriglyceride.text,
       'HighDensityLipoprotein': _textformHighDensityLipoprotein.text,
-      'AspartateTransaminase': _textformAspartateTransaminase.text,
-      'AlkalinePhosphatase': _textformAlkalinePhosphatase.text,
+      'LowDensityLipoprotein': _textformLowDensityLipoprotein.text,
+      'SGOT': _textformSGOT.text,
+      'SGPT': _textformSGPT.text,
+      'ALP': _textformALP.text,
+
       'TotalProtein': _textformTotalProtein.text,
       'Albumin': _textformAlbumin.text,
       'TotalBilirubin': _textformTotalBilirubin.text,
@@ -124,32 +132,37 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
       'CA125': _textformCA125.text,
       'CA199': _textformCA199.text,
     });
-    var data = json.decode(response.body);
+    // print(json.decode(responseLab.body));
+    var data = json.decode(responseLab.body);
 
-    if (_usernameCheck.text == "") {
-      // if(_username.text ==""){
-      //   print("username  is null");
-      // }else if(_passwordTextController.text == ""){
-      //   print(" password is null");
-      // }
+    // if (_usernameCheck.text == "") {
+    //   // if(_username.text ==""){
+    //   //   print("username  is null");
+    //   // }else if(_passwordTextController.text == ""){
+    //   //   print(" password is null");
+    //   // }
+    //   setState(() {
+    //     _errorMessage = 'Enter username and password.';
+    //   });
+    // } else {
+    if (data == "Success") {
       setState(() {
-        _errorMessage = 'Enter username and password.';
+        _successMessage = 'Success input!';
       });
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
     } else {
-      if (data == "Error") {
-        setState(() {
-          _errorMessage = 'Login failed. Please check your credentials.';
-        });
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      } else {
-        print('This IN ELSE OBJECT --------------------------------------****');
-        // await User.setsignin(true);
-        // Navigator.pushNamed(context, 'home');
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
-      }
+      print(
+          '******************************Not Error **********************************');
+      print(data);
+      print(
+          '****************************** ===== **********************************');
+      // await User.setsignin(true);
+      // Navigator.pushNamed(context, 'home');
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => HomeScreen()));
     }
+    // }
   }
 
   @override
@@ -179,10 +192,12 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
             'High Density Lipoprotein', _textformHighDensityLipoprotein),
         _buildInputClinicalLab(context, 'ไขมันส่วนไม่ดี',
             'Low Density Lipoprotein', _textformLowDensityLipoprotein),
+        _buildInputClinicalLab(context, 'การทำงานของตับ SGOT',
+            'Aspartate transaminase', _textformSGOT),
         _buildInputClinicalLab(context, 'การทำงานของตับ SGPT',
-            'Aspartate transaminase', _textformAspartateTransaminase),
+            'Alkaline phosphatase', _textformSGPT),
         _buildInputClinicalLab(context, 'การทำงานของตับ ALP',
-            'Alkaline phosphatase', _textformAlkalinePhosphatase),
+            'Alkaline phosphatase', _textformALP),
         _buildInputClinicalLab(context, 'ภาวะโภชนาการของร่างกาย 1',
             'Total protein', _textformTotalProtein),
         _buildInputClinicalLab(
@@ -219,10 +234,18 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
             'Cancer Antigen 125 (CA125)', _textformCA125),
         _buildInputClinicalLab(context, 'สารบ่งชี้มะเร็งตับอ่อน',
             'Tumor marker  (CA19-9)', _textformCA199),
-        _buildSettingsItem_with_ROw(context, '', () {
+        _btnFoot(context, '', () {
           // Action to perform when Item 2 is tapped
           _onItem2Tapped(context);
         }),
+        if (_successMessage.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Text(
+              _successMessage,
+              style: const TextStyle(color: Colors.green),
+            ),
+          ),
       ],
     );
   }
@@ -285,8 +308,7 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
     );
   }
 
-  Widget _buildSettingsItem_with_ROw(
-      BuildContext context, String itemName, VoidCallback onTap) {
+  Widget _btnFoot(BuildContext context, String itemName, VoidCallback onTap) {
     return Card(
       elevation: 5.0,
       child: Padding(
@@ -318,8 +340,9 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
             ElevatedButton(
               onPressed: () {
                 // Access the text entered by the user
-                String enteredText = _textformSugarBloodController.text;
-                print('Entered Text: $enteredText');
+                // String enteredText = _textformSugarBloodController.text;
+                // print('Entered Text: $enteredText');
+                sendLabDataAPI();
               },
               child: Text('Submit'),
             ),
@@ -433,9 +456,9 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
 //       TextEditingController();
 //   final TextEditingController _textformLowDensityLipoprotein =
 //       TextEditingController();
-//   final TextEditingController _textformAspartateTransaminase =
+//   final TextEditingController _textformSGOT =
 //       TextEditingController();
-//   final TextEditingController _textformAlkalinePhosphatase =
+//   final TextEditingController _textformSGPT =
 //       TextEditingController();
 //   final TextEditingController _textformTotalProtein = TextEditingController();
 //   final TextEditingController _textformAlbumin = TextEditingController();
@@ -536,9 +559,9 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
 //         _buildInputClinicalLab(context, 'ไขมันส่วนไม่ดี',
 //             'Low Density Lipoprotein', _textformLowDensityLipoprotein),
 //         _buildInputClinicalLab(context, 'การทำงานของตับ SGPT',
-//             'Aspartate transaminase', _textformAspartateTransaminase),
+//             'Aspartate transaminase', _textformSGOT),
 //         _buildInputClinicalLab(context, 'การทำงานของตับ ALP',
-//             'Alkaline phosphatase', _textformAlkalinePhosphatase),
+//             'Alkaline phosphatase', _textformSGPT),
 //         _buildInputClinicalLab(context, 'ภาวะโภชนาการของร่างกาย 1',
 //             'Total protein', _textformTotalProtein),
 //         _buildInputClinicalLab(
