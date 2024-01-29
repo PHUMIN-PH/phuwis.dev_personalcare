@@ -179,21 +179,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    newMethod(context, "Insert Healt Data",
-                        "This testing one widget . . ."),
-                    _buildWidgetHome(
-                        context, 'Insert activity', 'Widget_GET_Subtitle', () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => InsertActivityPage()),
-                      );
-                    }),
+                    // newMethod(context, "Insert Healt Data",
+                    //     "This testing one widget . . ."),
+                    // _buildWidgetHome(
+                    //     context, 'Insert activity', 'Widget_GET_Subtitle', () {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => InsertActivityPage()),
+                    //   );
+                    // }),
                     ActivityListView(
-                      activityicon: Icons.favorite,
-                      activityName: 'Insert Health Data',
+                      activityicon: Icons.monitor_heart_sharp,
+                      activityName: 'Health Analytic',
                       activityDetail: 'PersonalCare Data from hospital',
                       activityOnTap: "healthInsert()",
+                      passTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => InsertActivityPage()),
+                        );
+                      },
                     ),
                     ActivityListView(
                       activityicon: Icons.calendar_month,
@@ -309,7 +316,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
       // ==================================================================================================
       // ==================================================================================================
-
     );
   }
 }

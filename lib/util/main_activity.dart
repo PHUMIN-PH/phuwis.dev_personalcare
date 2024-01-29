@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ActivityListView extends StatelessWidget {
   final activityicon;
+  final passTap;
   final String activityName;
   final String activityDetail;
   final String activityOnTap;
@@ -13,6 +14,7 @@ class ActivityListView extends StatelessWidget {
     required this.activityName,
     required this.activityDetail,
     required this.activityOnTap,
+    this.passTap,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class ActivityListView extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: GestureDetector(
-          onTap: () {},
+          onTap: passTap,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -35,11 +37,12 @@ class ActivityListView extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Container(
-                        padding: EdgeInsets.all(16),
-                        color: Colors.orange,
+                        padding: EdgeInsets.all(8),
+                        color: Colors.grey[200],
                         child: Icon(
                           activityicon,
-                          color: Colors.white,
+                          color: Colors.orange[800],
+                          size: 40,
                         )),
                   ),
                   SizedBox(
@@ -51,11 +54,11 @@ class ActivityListView extends StatelessWidget {
                       Text(
                         activityName,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
                         ),
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: 10),
                       Text(
                         // numberOfActivityName.toString() + 'PersonalCare Data from hospital',
                         activityDetail,
@@ -69,7 +72,7 @@ class ActivityListView extends StatelessWidget {
                   ),
                 ],
               ),
-              Icon(Icons.more_horiz),
+              // Icon(Icons.more_horiz),
             ],
           ),
         ),
