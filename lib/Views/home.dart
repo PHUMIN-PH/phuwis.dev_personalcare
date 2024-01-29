@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return _onBackPressed(context);
       },
       child: Scaffold(
-        backgroundColor: Colors.pink[50],
+        backgroundColor: Color.fromARGB(240, 239, 243, 247),
         body: SafeArea(
           child: Column(
             children: [
@@ -124,24 +124,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     SmartWatchListView(
                       color: Colors.blue,
+                      colorBg: Colors.orange[300],
                       icon: Icons.favorite,
                       SmartWatchActivityName: 'Walk',
                       SmartWatchActivityDetail: 'Dasd',
                     ),
                     SmartWatchListView(
                       color: Colors.green[500],
+                      colorBg: Colors.red[200],
                       icon: Icons.favorite,
                       SmartWatchActivityName: 'Heart Rate',
                       SmartWatchActivityDetail: 'Dasd',
                     ),
                     SmartWatchListView(
                       color: Colors.orange[300],
+                      colorBg: Colors.blue[700],
                       icon: Icons.favorite,
                       SmartWatchActivityName: 'Drink water',
                       SmartWatchActivityDetail: 'Dasd',
                     ),
                     SmartWatchListView(
                       color: Colors.pink[300],
+                      colorBg: Colors.green[700],
                       icon: Icons.favorite,
                       SmartWatchActivityName: 'Drink water',
                       SmartWatchActivityDetail: 'Dasd',
@@ -203,21 +207,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     ActivityListView(
-                      activityicon: Icons.calendar_month,
-                      activityName: 'Activity Daily',
-                      activityDetail: 'insert daily activity ',
+                      activityicon: Icons.format_align_justify_rounded,
+                      activityName: 'Result Analytic',
+                      activityDetail: 'information of your health ',
                       activityOnTap: "",
                     ),
                     ActivityListView(
-                      activityicon: Icons.food_bank,
-                      activityName: 'Favorite Food',
-                      activityDetail: 'insert daily food in application',
-                      activityOnTap: "",
-                    ),
-                    ActivityListView(
-                      activityicon: Icons.favorite,
-                      activityName: 'Insert other',
-                      activityDetail: 'PersonalCare',
+                      activityicon: Icons.privacy_tip_rounded,
+                      activityName: 'About Health',
+                      activityDetail: 'update with dailynews ',
                       activityOnTap: "",
                     ),
                   ],

@@ -83,6 +83,7 @@ class ActivityListView extends StatelessWidget {
 
 class SmartWatchListView extends StatelessWidget {
   final color;
+  final colorBg;
   final icon;
   final SmartWatchActivityName;
   final SmartWatchActivityDetail;
@@ -90,6 +91,7 @@ class SmartWatchListView extends StatelessWidget {
   const SmartWatchListView({
     Key? key,
     required this.color,
+    required this.colorBg,
     required this.icon,
     required this.SmartWatchActivityName,
     required this.SmartWatchActivityDetail,
@@ -102,7 +104,7 @@ class SmartWatchListView extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: colorBg,
           borderRadius: BorderRadius.circular(16),
         ),
         child:
