@@ -93,6 +93,7 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
   final TextEditingController _textformCA199 = TextEditingController();
 
   String _successMessage = '';
+  String _problemMessage = '';
   String usernameRecive = 'Admin3';
 
   Future sendLabDataAPI() async {
@@ -112,7 +113,6 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
       'SGOT': _textformSGOT.text,
       'SGPT': _textformSGPT.text,
       'ALP': _textformALP.text,
-
       'TotalProtein': _textformTotalProtein.text,
       'Albumin': _textformAlbumin.text,
       'TotalBilirubin': _textformTotalBilirubin.text,
@@ -132,7 +132,7 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
       'CA125': _textformCA125.text,
       'CA199': _textformCA199.text,
     });
-    // print(json.decode(responseLab.body));
+    print(json.decode(responseLab.body));
     var data = json.decode(responseLab.body);
 
     // if (_usernameCheck.text == "") {
@@ -151,9 +151,13 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
       });
       // Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    } else if (data == "Problem") {
+      setState(() {
+        _problemMessage = 'somting wrong!';
+      });
     } else {
       print(
-          '******************************Not Error **********************************');
+          '****************************** Not Error **********************************');
       print(data);
       print(
           '****************************** ===== **********************************');

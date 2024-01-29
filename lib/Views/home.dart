@@ -152,27 +152,29 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Main Activity',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25.0),
-                  ),
-                  Icon(Icons.more_horiz),
-                ],
-              ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.only(top: 10, left: 30, right: 30),
                   // children: const [
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        // Padding(padding: EdgeInsets.only(left: 20)),
+                        Icon(
+                          Icons.health_and_safety_rounded,
+                          weight: 200,
+                          color: Colors.blue,
+                        ),
+                        Text(
+                          'Health Care Function',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                     // before version is old ROW (127-138)
                     SizedBox(
                       height: 10,
@@ -238,17 +240,76 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildWidgetHome(BuildContext context, String itemName,
       String GET_Subtitle, VoidCallback onTap) {
     return Container(
+      padding: EdgeInsets.all(14),
       margin: EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: ListTile(
-        title: Text(itemName),
-        subtitle: Text(GET_Subtitle),
+      // ====================== This old Version ===============================
+      // child: ListTile(
+      //   title: Text(itemName),
+      //   subtitle: Text(GET_Subtitle),
+      //   onTap: onTap,
+      //   leading: CircleAvatar(child: Text("IN")),
+      // ),
+
+      // =======================================================================
+
+      //======================= This New Version ===============================
+
+      child: GestureDetector(
         onTap: onTap,
-        leading: CircleAvatar(child: Text("IN")),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                      padding: EdgeInsets.all(16),
+                      color: Colors.orange,
+                      child: Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                      )),
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      itemName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      // numberOfActivityName.toString() + 'PersonalCare Data from hospital',
+                      GET_Subtitle,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Icon(Icons.more_horiz),
+          ],
+        ),
       ),
+
+      // ==================================================================================================
+      // ==================================================================================================
+
     );
   }
 }
