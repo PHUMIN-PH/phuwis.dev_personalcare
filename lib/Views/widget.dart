@@ -158,3 +158,64 @@ class _InsertActivDailyityState extends State<InsertDailyActivity> {
     );
   }
 }
+
+class DialogExample extends StatelessWidget {
+  const DialogExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: const Text('AlertDialog description'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      ),
+      child: const Text('Show Dialog'),
+    );
+  }
+}
+
+class DialogExample2 extends StatelessWidget {
+  const DialogExample2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    alignment: Alignment.center,
+                    // backgroundColor: Colors.green,
+                    title: const Text('บันทึกข้อมูลสำเร็จ'),
+                    titleTextStyle: TextStyle(
+                      color: Colors.green,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    // content: const Text('AlertDialog description'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pushNamed(context, 'home'),
+                        child: const Text('ตกลง'),
+                      ),
+                    ],
+                  ),
+                ),
+      child: const Text('Show Dialog'),
+    );
+  }
+}
+
+
