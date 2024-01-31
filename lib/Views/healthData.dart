@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HeealthData extends StatefulWidget {
-  const HeealthData({super.key});
+class HealthData extends StatefulWidget {
+  const HealthData({super.key});
 
   @override
-  State<HeealthData> createState() => _HeealthDataState();
+  State<HealthData> createState() => _HealthDataState();
 }
 
-class _HeealthDataState extends State<HeealthData> {
+class _HealthDataState extends State<HealthData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

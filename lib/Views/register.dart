@@ -41,6 +41,7 @@ class _SignUpSceenState extends State<SignUpSceen> {
     var data = json.decode(response.body);
     print("Data after BTN : ");
     if (data == "Error") {
+      _registerPassed = 'You Register Error.';
       Navigator.pushNamed(context, 'register');
       // Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => SignUpSceen()));

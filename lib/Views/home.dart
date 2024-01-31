@@ -202,7 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => InsertActivityPage()),
+                              builder: (context) => healthInsert()),
                         );
                       },
                     ),

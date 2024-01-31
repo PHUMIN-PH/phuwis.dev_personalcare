@@ -145,7 +145,7 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
     //     _errorMessage = 'Enter username and password.';
     //   });
     // } else {
-    if (data == "Success") {
+    if (data == "Insert") {
       setState(() {
         _successMessage = 'Success input!';
       });
@@ -153,14 +153,21 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
       //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
     } else if (data == "Problem") {
       setState(() {
-        _problemMessage = 'somting wrong!';
+        _successMessage = 'Problem wrong!';
+      });
+    } else if (data == "Update") {
+      setState(() {
+        _successMessage = 'Update Success!';
       });
     } else {
-      print(
-          '****************************** Not Error **********************************');
-      print(data);
-      print(
-          '****************************** ===== **********************************');
+      setState(() {
+        _successMessage = 'somting wrong!';
+      });
+      // print(
+      //     '****************************** Not Error **********************************');
+      // print(data);
+      // print(
+      //     '****************************** ===== **********************************');
       // await User.setsignin(true);
       // Navigator.pushNamed(context, 'home');
       // Navigator.push(
@@ -238,18 +245,39 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
             'Cancer Antigen 125 (CA125)', _textformCA125),
         _buildInputClinicalLab(context, 'สารบ่งชี้มะเร็งตับอ่อน',
             'Tumor marker  (CA19-9)', _textformCA199),
-        _btnFoot(context, '', () {
-          // Action to perform when Item 2 is tapped
-          _onItem2Tapped(context);
-        }),
-        if (_successMessage.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              _successMessage,
-              style: const TextStyle(color: Colors.green),
-            ),
+        // SizedBox(
+        //   height: 15,
+        // ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              if (_successMessage.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    _successMessage,
+                    style: const TextStyle(color: Colors.green, fontSize: 20),
+                  ),
+                ),
+              ElevatedButton(
+                onPressed: () {
+                  // Access the text entered by the user
+                  // String enteredText = _textformSugarBloodController.text;
+                  // print('Entered Text: $enteredText');
+                  sendLabDataAPI();
+                },
+                child: Text('Submit'),
+              ),
+            ],
           ),
+        ),
+
+        // _btnFoot(context, '', () {
+        //   // Action to perform when Item 2 is tapped
+        //   _onItem2Tapped(context);
+        // }),
       ],
     );
   }
@@ -302,6 +330,8 @@ class _ChemicalLabTextfieldState extends State<ChemicalLabTextfield> {
                           vertical: 20.0, horizontal: 16.0),
                       labelStyle: TextStyle(fontSize: 30.0),
                     ),
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
                   ),
                 ],
               ),

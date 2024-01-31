@@ -28,7 +28,7 @@ class _NavigationActivityState extends State<NavigationActivity> {
 
   List<Widget> _page = [
     HomeScreen(),
-    HeealthData(),
+    HealthData(),
     SettingBtn(),
   ];
 
