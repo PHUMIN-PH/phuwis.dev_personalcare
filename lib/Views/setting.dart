@@ -19,6 +19,29 @@ class _SettingBtnState extends State<SettingBtn> {
     Navigator.pushNamed(context, 'login');
   }
 
+  Future<bool> _onBackPressed(BuildContext context) async {
+    // You can add any additional logic before exiting the app
+    // For example, show a confirmation dialog
+    return await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Exit App?'),
+            content: Text('Do you want to exit the application?'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text('No'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text('Yes'),
+              ),
+            ],
+          ),
+        ) ??
+        false; // If the user dismisses the dialog, default to false
+  }
+
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
@@ -157,32 +180,6 @@ class _SettingBtnState extends State<SettingBtn> {
                               trailing: Icon(Icons.arrow_forward_ios_sharp),
                             ),
                           ),
-                          Card(
-                            child: ListTile(
-                              onTap: () {},
-                              leading: CircleAvatar(child: Text('A')),
-                              title: Text('temp'),
-                              subtitle: Text('Supporting text'),
-                              trailing: Icon(Icons.arrow_forward_ios_sharp),
-                            ),
-                          ),
-                          // _widgetSetting('Text Widget Setting TEST','this is subTextWidgetSetting',(){}),
-                          _buildSettingsItem(
-                              context, 'Setting menu Item 18', 'testing', () {
-                            // Action to perform when Item 2 is tapped
-                          }),
-                          _buildWidgetSetting(
-                            context,
-                            'Widget Item2',
-                            'Widget_GET_Subtitle',
-                            () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => healthInsert()),
-                              );
-                            },
-                          )
                           // Card(
                           //   child: InkWell(
                           //     splashColor: Colors.blue,
@@ -294,6 +291,29 @@ class _topUserInfo extends StatelessWidget {
 
   final double width;
 
+  Future<String?> dialogMethod(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        alignment: Alignment.center,
+        // backgroundColor: Colors.green,
+        title: const Text('เปลี่ยนภาพปก'),
+        titleTextStyle: TextStyle(
+          color: Colors.green,
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+        ),
+        // content: const Text('AlertDialog description'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pushNamed(context, 'home'),
+            child: const Text('ตกลง'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -333,7 +353,9 @@ class _topUserInfo extends StatelessWidget {
             SizedBox(
               width: width * 0.03,
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.edit_outlined)),
+            IconButton(
+                onPressed: () => dialogMethod(context),
+                icon: Icon(Icons.edit_outlined)),
           ],
         ),
       ],

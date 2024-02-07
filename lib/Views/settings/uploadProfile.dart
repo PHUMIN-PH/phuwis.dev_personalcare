@@ -1,9 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
 Future<void> uploadImage(File imageFile) async {
-  final uri = Uri.parse('https://your-api-endpoint.com/upload'); // Replace with your API endpoint
+  final uri = Uri.parse(
+      'https://your-api-endpoint.com/upload'); // Replace with your API endpoint
   final request = http.MultipartRequest('POST', uri);
   request.files.add(await http.MultipartFile.fromPath('image', imageFile.path));
 

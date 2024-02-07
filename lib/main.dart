@@ -29,12 +29,28 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  // final checkMain = "";
+
+  // Future checklogin() async {
+  //   bool? signin = await User.getsignin();
+  //   print(signin);
+  //   if (signin == false) {
+  //     // Navigator.pushNamed(context, 'login');
+
+  //   }
+  // }
+
+  // void initState() {
+  //   checklogin();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ener PersonalCare',
-      home: NavigationActivity(),
+      debugShowCheckedModeBanner: false,
+      // title: 'Ener PersonalCare',
+      home: const NavigationActivity(),
+      // home: NavigationActivity(),
       routes: {
         'register': (context) => const SignUpSceen(),
         'home': (context) => const NavigationActivity(),

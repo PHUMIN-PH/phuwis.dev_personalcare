@@ -71,5 +71,8 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    // This implement is ** Watch BLE (Bluetooth Low Energy) Connection **
+//    implementation 'com.google.android.gms:play-services-wearable:18.1.0'
 }
 

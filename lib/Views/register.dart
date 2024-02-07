@@ -36,7 +36,7 @@ class _SignUpSceenState extends State<SignUpSceen> {
       'password': _passWordTextController.text,
       'name': nameuser.text,
       // 'telephone': telephone.text,
-      'telephone': '085555451',
+      'telephone': '0584713367',
     });
     var data = json.decode(response.body);
     print("Data after BTN : ");
@@ -127,74 +127,27 @@ class _SignUpSceenState extends State<SignUpSceen> {
             //         ))),
 //---------------------------------------------------------- 1st version end -----------------
             child: Card(
-              color: Colors.pink[50],
+              color: Colors.white,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+                  const SizedBox(
+                    height: 20,
+                  ),
                   const Text(
-                    'Register',
-                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                    'ลงทะเบียน',
+                    style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurpleAccent),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  // const Text(
-                  //   'Please complete your',
-                  //   style: TextStyle(fontSize: 20),
-                  // ),
-                  // const Text(
-                  //   'biodata correctly',
-                  //   style: TextStyle(fontSize: 20),
-                  // ),
-                  // const SizedBox(
-                  //   height: 30,
-                  // ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 150,
-                        child: TextFormField(
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Your name',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                                borderSide: const BorderSide(
-                                    width: 0, style: BorderStyle.solid)),
-                          ),
-                          // validator: (val) {
-                          //   if (val!.isEmpty) {
-                          //     return 'Empty';
-                          //   }
-                          //   return null;
-                          // },
-                          controller: nameuser,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      SizedBox(
-                        width: 150,
-                        child: TextFormField(
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                                borderSide: const BorderSide(
-                                    width: 0, style: BorderStyle.solid)),
-                            labelText: 'Username For Login',
-                          ),
-                          validator: (val) {
-                            if (val!.isEmpty) {
-                              return 'Empty';
-                            }
-                            return null;
-                          },
-                          controller: _userNameTextController,
-                        ),
-                      ),
-                    ],
+                  SizedBox(
+                    width: 350,
+                    child: textFormWithValidator(
+                        _userNameTextController, 'username', false),
                   ),
 
                   // const SizedBox(
@@ -225,70 +178,23 @@ class _SignUpSceenState extends State<SignUpSceen> {
                   ),
                   SizedBox(
                     width: 350,
-                    child: TextFormField(
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: const BorderSide(
-                                width: 0, style: BorderStyle.solid)),
-                        labelText: 'Your E-Mail',
-                      ),
-                      // validator: (val) {
-                      //   if (val!.isEmpty) {
-                      //     return 'Empty';
-                      //   }
-                      //   return null;
-                      // },
-                      controller: _emailTextController,
-                    ),
+                    child: textFormWithValidator(
+                        _emailTextController, 'Email Adress', false),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   SizedBox(
                     width: 350,
-                    child: TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: const BorderSide(
-                                width: 0, style: BorderStyle.solid)),
-                        labelText: 'Create your Password',
-                      ),
-                      validator: (val) {
-                        if (val!.isEmpty) {
-                          return 'Empty';
-                        }
-                        return null;
-                      },
-                      controller: _passWordTextController,
-                    ),
+                    child: textFormWithValidator(
+                        _passWordTextController, 'Password', true),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   SizedBox(
                     width: 350,
-                    child: TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: const BorderSide(
-                                width: 0, style: BorderStyle.solid)),
-                        labelText: 'Re-Type your Password',
-                      ),
-                      validator: (val) {
-                        if (val!.isEmpty) {
-                          return 'Empty';
-                        } else if (val != _passWordTextController.text) {
-                          return 'Password not match';
-                        }
-                        return null;
-                      },
-                    ),
+                    child: formValidatePassword(_passWordTextController),
                   ),
 
                   if (_registerPassed.isNotEmpty)
@@ -335,6 +241,66 @@ class _SignUpSceenState extends State<SignUpSceen> {
             ),
           ),
         ));
+  }
+
+  TextFormField formValidatePassword(TextEditingController controller) {
+    return TextFormField(
+      obscureText: true,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
+        labelText: 'Confirm Password',
+      ),
+      validator: (val) {
+        if (val!.isEmpty) {
+          return 'Empty';
+        } else if (val != controller.text) {
+          return 'Password not match';
+        }
+        return null;
+      },
+    );
+  }
+
+  TextFormField textFormWithUnValidator(
+      TextEditingController controller, String text) {
+    return TextFormField(
+      obscureText: false,
+      decoration: InputDecoration(
+        labelText: text,
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
+      ),
+      // validator: (val) {
+      //   if (val!.isEmpty) {
+      //     return 'Empty';
+      //   }
+      //   return null;
+      // },
+      controller: controller,
+    );
+  }
+
+  TextFormField textFormWithValidator(
+      TextEditingController controller, String text, bool obscureText) {
+    return TextFormField(
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        labelText: text,
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: const BorderSide(width: 0, style: BorderStyle.solid)),
+      ),
+      validator: (val) {
+        if (val!.isEmpty) {
+          return 'Empty';
+        }
+        return null;
+      },
+      controller: controller,
+    );
   }
 
   Row signinOption() {

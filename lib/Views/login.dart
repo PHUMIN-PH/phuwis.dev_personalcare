@@ -21,20 +21,18 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _password = TextEditingController();
   String _errorMessage = '';
 
-  // Future checklogin() async {
-  //   bool? signin = await User.getsignin();
-  //   print(signin);
-  //   if (signin == false) {
-  //     Navigator.pushNamed(context, 'login');
-  //   } else {
-  //     Navigator.pushNamed(context, 'home');
-  //   }
-  // }
+  Future checklogin() async {
+    bool? signin = await User.getsignin();
+    print(signin);
+    if (signin == true) {
+      Navigator.pushNamed(context, 'home');
+    }
+  }
 
-  // void initState() {
-  //   checklogin();
-  //   super.initState();
-  // }
+  void initState() {
+    checklogin();
+    super.initState();
+  }
 
   Future sign_in() async {
     String url =
@@ -52,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
       //   print(" password is null");
       // }
       setState(() {
-        final _errorMessage = 'Enter username and password.';
+        _errorMessage = 'Enter username and password.';
       });
     } else {
       if (data == "Error") {
@@ -85,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       20, MediaQuery.of(context).size.height * 0.1, 20, 0),
                   child: Column(
                     children: <Widget>[
-                      logoWidget("assets/images/logo.png"),
+                      logoWidget("assets/images/splash1.png"),
                       SizedBox(
                         height: 20,
                       ),

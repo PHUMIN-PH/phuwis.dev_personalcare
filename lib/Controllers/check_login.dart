@@ -12,10 +12,13 @@ class check_login extends StatefulWidget {
 class _check_loginState extends State<check_login> {
   Future checklogin() async {
     bool? signin = await User.getsignin();
+    print("Setsign IN :");
     print(signin);
-    if (signin = false) {
+    if (signin == false) {
       print("Login False");
+      Navigator.pushNamed(context, 'login');
     } else {
+      print("Login success");
       Navigator.pushNamed(context, 'home');
     }
   }

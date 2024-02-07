@@ -17,11 +17,24 @@ class NavigationActivity extends StatefulWidget {
 }
 
 class _NavigationActivityState extends State<NavigationActivity> {
-  // @override
-  // Future logout() async {
-  //   await User.setsignin(false);
-  //   Navigator.pushNamed(context, 'login');
-  // }
+  @override
+  Future logout() async {
+    await User.setsignin(false);
+    Navigator.pushNamed(context, 'login');
+  }
+
+  Future checklogin() async {
+    bool? signin = await User.getsignin();
+    print(signin);
+    if (signin == false) {
+      Navigator.pushNamed(context, 'login');
+    }
+  }
+
+  void initState() {
+    checklogin();
+    super.initState();
+  }
 
   int _selectedIndex = 0;
   PageController _pageController = PageController();
