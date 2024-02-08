@@ -39,9 +39,9 @@ class _NavigationActivityState extends State<NavigationActivity> {
   int _selectedIndex = 0;
   PageController _pageController = PageController();
 
-  List<Widget> _page = [
+  final List<Widget> _page = [
     HomeScreen(),
-    HealthData(),
+    DashboardHealth(),
     SettingBtn(),
   ];
 
@@ -75,7 +75,7 @@ class _NavigationActivityState extends State<NavigationActivity> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue[400],
         onTap: _onItemTapped,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.heart_broken), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),

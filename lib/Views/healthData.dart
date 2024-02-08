@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 class HealthData extends StatefulWidget {
   const HealthData({super.key});
 
@@ -11,12 +12,84 @@ class HealthData extends StatefulWidget {
 class _HealthDataState extends State<HealthData> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Health Data For You'),
-        automaticallyImplyLeading: false, // Hide the back button
+    return const Scaffold(
+      // appBar: AppBar(
+      //   title: const Text('Health Data For You'),
+      //   centerTitle: true,
+      //   automaticallyImplyLeading: false, // Hide the back button
+      // ),
+      backgroundColor: Colors.deepPurple,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            leading: Icon(Icons.menu),
+            title: Text('M Y   H E A L T H C A R E'),
+            expandedHeight: 300,
+          ),
+        ],
       ),
-      body: const ChemicalLabTextfield_II(),
+    );
+  }
+}
+
+class DashboardHealth extends StatelessWidget {
+  const DashboardHealth({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.deepPurple[100],
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            // backgroundColor: Colors.deepPurple,
+            leading: Icon(Icons.menu),
+            centerTitle: true,
+            pinned: true,
+            title: Text('M Y   H E A L T H C A R E'),
+            expandedHeight: 200,
+          ),
+
+          // sliver item
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  height: 450,
+                  color: Colors.deepPurple,
+                  
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  height: 400,
+                  color: Colors.deepPurple,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  height: 400,
+                  color: Colors.deepPurple,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -25,7 +98,8 @@ class ChemicalLabTextfield_II extends StatefulWidget {
   const ChemicalLabTextfield_II({super.key});
 
   @override
-  State<ChemicalLabTextfield_II> createState() => _ChemicalLabTextfield_IIState();
+  State<ChemicalLabTextfield_II> createState() =>
+      _ChemicalLabTextfield_IIState();
 }
 
 class _ChemicalLabTextfield_IIState extends State<ChemicalLabTextfield_II> {
