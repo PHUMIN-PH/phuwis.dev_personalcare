@@ -59,7 +59,26 @@ class DashboardHealth extends StatelessWidget {
                 child: Container(
                   height: 450,
                   color: Colors.deepPurple,
-                  
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              "MY Personal HealthCare",
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text("data2"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),

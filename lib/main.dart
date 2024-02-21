@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'Views/login.dart';
 import 'Views/register.dart';
 import 'Views/home.dart';
-import 'package:ener_personalcare/Model/UserPreferences.dart';
+import 'package:x_personalcare/Model/UserPreferences.dart';
 import 'Views/navigator.dart';
-import 'package:ener_personalcare/Controllers/user.dart';
+import 'package:x_personalcare/Controllers/user.dart';
 import 'Views/splash.dart';
 import 'Controllers/check_login.dart';
 

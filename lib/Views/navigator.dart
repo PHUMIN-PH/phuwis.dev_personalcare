@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:ener_personalcare/Views/healthData.dart';
-import 'package:ener_personalcare/util/emoticon_face.dart';
-import 'package:ener_personalcare/util/main_activity.dart';
+import 'package:x_personalcare/Views/healthData.dart';
+import 'package:x_personalcare/util/emoticon_face.dart';
+import 'package:x_personalcare/util/main_activity.dart';
 import 'package:flutter/material.dart';
-import 'package:ener_personalcare/Controllers/user.dart';
+import 'package:x_personalcare/Controllers/user.dart';
 import 'health-insert.dart';
 import 'setting.dart';
 import 'home.dart';

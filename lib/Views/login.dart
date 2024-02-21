@@ -1,11 +1,11 @@
-import 'package:ener_personalcare/Controllers/check_login.dart';
+import 'package:x_personalcare/Controllers/check_login.dart';
 import 'package:flutter/material.dart';
 import 'widget.dart';
-import 'package:ener_personalcare/Views/register.dart';
+import 'package:x_personalcare/Views/register.dart';
 import 'package:http/http.dart' as http;
 import 'home.dart';
 import 'dart:convert';
-import 'package:ener_personalcare/Controllers/user.dart';
+import 'package:x_personalcare/Controllers/user.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

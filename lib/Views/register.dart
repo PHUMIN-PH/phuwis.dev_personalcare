@@ -1,11 +1,11 @@
-import 'package:ener_personalcare/Views/navigator.dart';
+import 'package:x_personalcare/Views/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'widget.dart';
 import 'home.dart';
 import 'login.dart';
 import 'dart:convert';
-import 'package:ener_personalcare/Controllers/user.dart';
+import 'package:x_personalcare/Controllers/user.dart';
 
 class SignUpSceen extends StatefulWidget {
   const SignUpSceen({super.key});

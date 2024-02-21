@@ -1,5 +1,5 @@
-import 'package:ener_personalcare/Views/home.dart';
-import 'package:ener_personalcare/Views/navigator.dart';
+import 'package:x_personalcare/Views/home.dart';
+import 'package:x_personalcare/Views/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

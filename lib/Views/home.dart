@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:ener_personalcare/Views/health-insert.dart';
-import 'package:ener_personalcare/util/emoticon_face.dart';
-import 'package:ener_personalcare/util/main_activity.dart';
+import 'package:x_personalcare/Views/health-insert.dart';
+import 'package:x_personalcare/util/emoticon_face.dart';
+import 'package:x_personalcare/util/main_activity.dart';
 import 'package:flutter/material.dart';
-import 'package:ener_personalcare/Controllers/user.dart';
+import 'package:x_personalcare/Controllers/user.dart';
 import 'widget.dart';
 
 class HomeScreen extends StatefulWidget {

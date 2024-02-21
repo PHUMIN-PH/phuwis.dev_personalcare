@@ -1,9 +1,9 @@
-import 'package:ener_personalcare/Views/health-insert.dart';
+import 'package:x_personalcare/Views/health-insert.dart';
 import 'package:flutter/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:ener_personalcare/util/main_activity.dart';
-import 'package:ener_personalcare/Controllers/user.dart';
-import 'package:ener_personalcare/Views/settings/accessibility.dart';
+import 'package:x_personalcare/util/main_activity.dart';
+import 'package:x_personalcare/Controllers/user.dart';
+import 'package:x_personalcare/Views/settings/accessibility.dart';
 
 class SettingBtn extends StatefulWidget {
   const SettingBtn({super.key});
